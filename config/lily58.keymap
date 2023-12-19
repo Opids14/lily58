@@ -9,6 +9,36 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    macros {
+        mCopy: mCopy {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(C)>;
+            label = "MCOPY";
+        };
+
+        mPaste: mPaste {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(V)>;
+            label = "MPASTE";
+        };
+
+        mInspect: mInspect {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(LC(J))>;
+            label = "MINSPECT";
+        };
+
+        mInspectClear: mInspectClear {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(L)>;
+            label = "MINSPECTCLEAR";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -42,11 +72,11 @@
 
             label = "Lower";
             bindings = <
-&kp F1     &kp F2          &kp F3          &kp F4           &kp F5      &kp F6                       &kp F7            &kp F8             &kp F9                &kp F10   &kp F11   &kp F12
-&kp F1     &kp F2          &kp UP_ARROW    &kp F4           &kp F5      &kp F6                       &kp MINUS         &kp EQUAL          &kp F9                &kp F10   &kp F11   &kp F12
-&kp GRAVE  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp DOLLAR  &kp PRCNT                    &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp NON_US_BACKSLASH  &kp LPAR  &kp RPAR  &kp TILDE
-&trans     &trans          &trans          &trans           &trans      &trans     &trans    &trans  &trans            &kp MINUS          &kp KP_PLUS           &kp LBRC  &kp RBRC  &kp PIPE
-                                           &trans           &trans      &trans     &trans    &trans  &trans            &trans             &trans
+&kp F1     &kp F2          &kp F3          &kp F4           &kp F5     &kp F6                            &kp F7            &kp F8             &kp F9                &kp F10   &kp F11   &kp F12
+&mCopy     &mPaste         &kp UP_ARROW    &kp F4           &mInspect  &mInspectClear                    &kp MINUS         &kp EQUAL          &kp F9                &kp F10   &kp F11   &kp F12
+&kp GRAVE  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans     &trans                            &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp NON_US_BACKSLASH  &kp LPAR  &kp RPAR  &kp TILDE
+&trans     &trans          &trans          &trans           &trans     &trans          &trans    &trans  &trans            &kp MINUS          &kp KP_PLUS           &kp LBRC  &kp RBRC  &kp PIPE
+                                           &trans           &trans     &trans          &trans    &trans  &trans            &trans             &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
