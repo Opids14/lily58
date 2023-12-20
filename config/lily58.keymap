@@ -37,6 +37,64 @@
             bindings = <&kp LC(L)>;
             label = "MINSPECTCLEAR";
         };
+
+        m1dot: m1dot {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp FSLH &kp N1 &kp DOT>;
+            label = "M1DOT";
+        };
+
+        m2c: m2c {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp FSLH &kp N2 &kp C &kp DOT>;
+            label = "M2C";
+        };
+
+        m2b: m2b {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp FSLH &kp N2 &kp B &kp DOT>;
+            label = "M2B";
+        };
+
+        m2dot: m2dot {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp FSLH &kp N2 &kp DOT>;
+            label = "M2DOT";
+        };
+
+        mGreet: mGreet {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp FSLH &kp G &kp T>;
+            label = "MGREET";
+        };
+    };
+
+    behaviors {
+        Tap1n2c: Tap1n2c {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP1N2C";
+            #binding-cells = <0>;
+            bindings = <&m1dot>, <&m2c>;
+        };
+
+        tap2dotN2b: tap2dotN2b {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP2DOTN2B";
+            #binding-cells = <0>;
+            bindings = <&m2dot>, <&m2b>;
+        };
+
+        TPLAY: TPLAY {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TPLAY";
+            #binding-cells = <0>;
+            bindings = <&kp K_PLAY_PAUSE>, <&kp K_NEXT>, <&kp K_PREV>;
+        };
     };
 
     keymap {
@@ -52,11 +110,11 @@
 
             label = "Base";
             bindings = <
-&kp ESC    &kp N1  &kp N2  &kp N3        &kp N4        &kp N5                         &kp N6  &kp N7    &kp N8     &kp N9   &kp N0    &kp GRAVE
-&kp TAB    &kp Q   &kp W   &kp E         &kp R         &kp T                          &kp Y   &kp U     &kp I      &kp O    &kp P     &kp MINUS
-&kp LCTRL  &kp A   &kp S   &kp D         &kp F         &kp G                          &kp H   &kp J     &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LSHFT  &kp Z   &kp X   &kp C         &kp V         &kp B   &kp LBKT     &kp RBKT  &kp N   &kp M     &kp COMMA  &kp DOT  &kp FSLH  &kp RSHFT
-                           &kp LEFT_GUI  &kp LEFT_ALT  &mo 0   &kp SPACE    &kp RET   &mo 1   &kp BSPC  &kp RGUI
+&kp ESC    &kp N1  &kp N2  &kp N3        &kp N4        &kp N5                        &kp N6  &kp N7           &kp N8      &kp N9   &kp N0    &kp GRAVE
+&kp TAB    &kp Q   &kp W   &kp E         &kp R         &kp T                         &kp Y   &kp U            &kp I       &kp O    &kp P     &kp BACKSPACE
+&kp LCTRL  &kp A   &kp S   &kp D         &kp F         &kp G                         &kp H   &kp J            &kp K       &kp L    &kp SEMI  &kp SQT
+&kp LSHFT  &kp Z   &kp X   &kp C         &kp V         &kp B   &Tap1n2c     &TPLAY   &kp N   &kp M            &kp COMMA   &kp DOT  &kp FSLH  &kp RSHFT
+                           &kp LEFT_GUI  &kp LEFT_ALT  &mo 1   &kp SPACE    &kp RET  &mo 2   &kp PRINTSCREEN  &kp DELETE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -72,11 +130,11 @@
 
             label = "Lower";
             bindings = <
-&kp F1     &kp F2          &kp F3          &kp F4           &kp F5     &kp F6                            &kp F7            &kp F8             &kp F9                &kp F10   &kp F11   &kp F12
-&mCopy     &mPaste         &kp UP_ARROW    &kp F4           &mInspect  &mInspectClear                    &kp MINUS         &kp EQUAL          &kp F9                &kp F10   &kp F11   &kp F12
-&kp GRAVE  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans     &trans                            &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp NON_US_BACKSLASH  &kp LPAR  &kp RPAR  &kp TILDE
-&trans     &trans          &trans          &trans           &trans     &trans          &trans    &trans  &trans            &kp MINUS          &kp KP_PLUS           &kp LBRC  &kp RBRC  &kp PIPE
-                                           &trans           &trans     &trans          &trans    &trans  &trans            &trans             &trans
+&kp F1     &kp F2          &kp F3          &kp F4           &kp F5     &kp F6                                   &kp F7            &kp F8             &kp F9                &kp F10   &kp F11   &kp F12
+&mCopy     &mPaste         &kp UP_ARROW    &kp F4           &mInspect  &mInspectClear                           &kp MINUS         &kp EQUAL          &trans                &trans    &trans    &trans
+&kp GRAVE  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans     &mGreet                                  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp NON_US_BACKSLASH  &kp LPAR  &kp RPAR  &kp TILDE
+&trans     &trans          &trans          &trans           &trans     &trans          &tap2dotN2b    &kp CAPS  &trans            &kp MINUS          &kp KP_PLUS           &kp LBRC  &kp RBRC  &kp PIPE
+                                           &trans           &trans     &trans          &trans         &trans    &trans            &trans             &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
