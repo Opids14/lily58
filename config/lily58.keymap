@@ -76,14 +76,14 @@
         MACcopy: MACcopy {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_GUI &kp C>;
+            bindings = <&kp LG(C)>;
             label = "MACCOPY";
         };
 
         MacPaste: MacPaste {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_GUI &kp V>;
+            bindings = <&kp LG(V)>;
             label = "MACPASTE";
         };
     };
