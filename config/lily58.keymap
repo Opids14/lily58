@@ -119,14 +119,13 @@
         MAC-copy {
             bindings = <&MACcopy>;
             key-positions = <1 2>;
-            require-prior-idle-ms = <50>;
-            timeout-ms = <150>;
             layers = <0>;
         };
 
         macpaste {
             bindings = <&MacPaste>;
             key-positions = <3 4>;
+            layers = <0>;
         };
     };
 
