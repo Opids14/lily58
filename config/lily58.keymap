@@ -115,6 +115,12 @@
 
     combos {
         compatible = "zmk,combos";
+
+        entercombo {
+            bindings = <&kp ENTER>;
+            key-positions = <27 28>;
+            layers = <1>;
+        };
     };
 
     keymap {
